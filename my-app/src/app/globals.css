@@ -1,5 +1,13 @@
+*{
+    margin: 0px;
+    padding: 0px
+}
+
 body{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1{
@@ -12,5 +20,18 @@ h1{
 }
 
 .noteForm{
-    
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+input{
+    margin-block: 10px;
+}
+
+.note{
+    border: solid 1px black;
+    border-radius: 10px;
+    margin-block: 10px;
+    padding: 15px;
 }
