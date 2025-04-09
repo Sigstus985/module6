@@ -1,7 +1,8 @@
 "use client";
-import Image from "next/image";
-import styles from "./page.module.css";
+
 import { useEffect, useState } from "react";
+import { getCollection } from "./hooks/mongodb/databaseconnection";
+import getMovies from "./hooks/mongodb/getMovies";
 
 export default function Home() {
 	const [buttonVis, setButtonVis] = useState(true);
@@ -11,10 +12,11 @@ export default function Home() {
 		"Pick up the kids at school", "Get drain cleaner"
 	]);
 
+
 	const handleClick = () => {
 		setButtonVis(false);
 		setFormVis(true);
-	};
+	};  
 
   const handleChange = (e) => {
     setFormData(formData)
@@ -32,9 +34,9 @@ export default function Home() {
     setTodoArray([...todoArray , payload.title])
 	};
 
-  useEffect(() => {
+/*   useEffect(() => {
     console.log(todoArray)
-  }, [handleSubmit])
+  }, [handleSubmit]) */
 
 	return (
 		<div>
@@ -65,6 +67,7 @@ export default function Home() {
 					</div>
 				))}
 			</main>
+      <button onClick={() => getMovies("Premadenotes")}>Test</button>
 		</div>
 	);
 }
