@@ -13,6 +13,7 @@ const client = new MongoClient(uri, {
 });
 
 async function getDB(dbName) {
+    console.log("getDB")
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
@@ -25,6 +26,7 @@ async function getDB(dbName) {
 }
 
 export async function getCollection(collectionName) {
+    console.log("getCollection")
     const db = await getDB("notes")
     if (db) return db.collection(collectionName)
 

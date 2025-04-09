@@ -2,25 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { getCollection } from "./hooks/mongodb/databaseconnection";
-import getMovies from "./hooks/mongodb/getMovies";
+import getData from "./hooks/mongodb/getData";
+import data from "./hooks/mongodb/getData";
 
 export default function Home() {
 	const [buttonVis, setButtonVis] = useState(true);
 	const [formVis, setFormVis] = useState(false);
 	const [formData, setFormData] = useState("");
 	const [todoArray, setTodoArray] = useState([
-		"Pick up the kids at school", "Get drain cleaner"
+		"Pick up the kids at school",
+		"Get drain cleaner",
 	]);
-
 
 	const handleClick = () => {
 		setButtonVis(false);
 		setFormVis(true);
-	};  
+	};
 
-  const handleChange = (e) => {
-    setFormData(formData)
-  }
+	const handleChange = (e) => {
+		setFormData(formData);
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -28,15 +29,21 @@ export default function Home() {
 		setButtonVis(true);
 		setFormVis(false);
 
-    const formData = new FormData(e.target)
-    const payload = Object.fromEntries(formData)
+		const formData = new FormData(e.target);
+		const payload = Object.fromEntries(formData);
 
-    setTodoArray([...todoArray , payload.title])
+		setTodoArray([...todoArray, payload.title]);
 	};
 
-/*   useEffect(() => {
-    console.log(todoArray)
-  }, [handleSubmit]) */
+	const test = async () => {
+    const log = await getData()
+    
+		console.log(log);
+	};
+
+  useEffect(() => {
+
+  },[])
 
 	return (
 		<div>
@@ -53,8 +60,8 @@ export default function Home() {
 					<input
 						type="text"
 						placeholder="Note title"
-            name="title"
-            onChange={handleChange}
+						name="title"
+						onChange={handleChange}
 					/>
 					<button type="submit">Submit</button>
 				</form>
@@ -64,10 +71,11 @@ export default function Home() {
 				{todoArray.map((note) => (
 					<div className="note" key={note}>
 						<h2>{note}</h2>
+						<button>Edit</button>
 					</div>
 				))}
 			</main>
-      <button onClick={() => getMovies("Premadenotes")}>Test</button>
+			<button onClick={() => test()}>Test</button>
 		</div>
 	);
 }
