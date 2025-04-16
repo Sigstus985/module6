@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getCollection } from "./hooks/mongodb/databaseconnection";
 import getData from "./hooks/mongodb/getData";
 import data from "./hooks/mongodb/getData";
+import route from "./api/todo/create/route";
 
 export default function Home() {
 	const [buttonVis, setButtonVis] = useState(true);
@@ -36,14 +37,17 @@ export default function Home() {
 	};
 
 	const test = async () => {
-    const log = await getData()
-    
-		console.log(log);
+		const log = await getData();
+    const dataFromApi = log.map((i) => i.title)
+
+		console.log(dataFromApi);
+		setTodoArray([...todoArray, ...dataFromApi]);
+		console.log(todoArray);
 	};
 
-  useEffect(() => {
-
-  },[])
+	const testAgain = async () => {
+		console.log( await fetch("api/todo/create"))
+	}
 
 	return (
 		<div>
@@ -68,14 +72,16 @@ export default function Home() {
 			)}
 
 			<main className="notes">
-				{todoArray.map((note) => (
-					<div className="note" key={note}>
-						<h2>{note}</h2>
-						<button>Edit</button>
-					</div>
-				))}
+				{todoArray &&
+					todoArray.map((note) => (
+						<div className="note" key={note}>
+							<h2>{note}</h2>
+							<button>Edit</button>
+						</div>
+					))}
 			</main>
 			<button onClick={() => test()}>Test</button>
+			<button onClick={() => testAgain()}>Test (again)</button>
 		</div>
 	);
 }
