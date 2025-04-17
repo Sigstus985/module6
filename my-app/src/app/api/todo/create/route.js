@@ -1,11 +1,11 @@
 export async function POST(request)  {
-	const res = await request.json();
+	const req = await request.json()
     try {
-        console.log(res)
+        console.log(req)
         return new Response(JSON.stringify({
             message: "Success"
         }), {
-            status: 200,
+            status: 201,
             headers: {'Content-Type': 'application/json'}
         })
     }
@@ -13,7 +13,3 @@ export async function POST(request)  {
         console.log(err)
     }
 }
-
- /*    export async function GET(request) {
-
-    } */

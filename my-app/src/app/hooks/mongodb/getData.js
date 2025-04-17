@@ -1,6 +1,8 @@
 "use server";
 import { getCollection } from "./databaseconnection";
 
+let data = {}
+
 export default async function getData() {
 	console.log("getData");
 	try {
