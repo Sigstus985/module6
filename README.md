@@ -1,0 +1,1 @@
+This is all I've managed to muster up for the module. I have a (somewhat) functional front end that can pull data from mongoDB on the users request. I've started working on implementing HTTP verbs in the function so the user can edit, create, or delete entries on the database. Although that work is not finished.
