@@ -72,11 +72,10 @@ export default function Home() {
 	};
 
 	const confirm = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 
-		setShowEdit(true)
-		setShowInput(false)
-
+		setShowEdit(true);
+		setShowInput(false);
 	};
 
 	return (
